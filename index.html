@@ -14,43 +14,100 @@
 </head>
 <body class="bg-black text-white min-h-screen flex flex-col justify-between select-none">
 
-    <!-- Navigation Header -->
-    <header class="w-full p-6 sm:p-8 flex justify-between items-center z-10">
+    <!-- Persistent Header across all views -->
+    <header class="w-full p-6 sm:p-8 flex justify-between items-center z-20 border-b border-gray-900">
         <!-- Top Left Header Text -->
         <div class="text-base sm:text-lg font-semibold tracking-wider text-gray-200">
             CS FYP 2026
         </div>
 
-        <!-- Top Right Navigation Link -->
-        <nav>
-            <a href="index.html" class="text-base sm:text-lg font-medium underline underline-offset-4 hover:text-gray-300 transition-colors duration-200 cursor-pointer">
+        <!-- Top Right Navigation Links -->
+        <nav class="flex space-x-6">
+            <button id="nav-home" onclick="showView('home')" class="text-base sm:text-lg font-medium underline underline-offset-4 hover:text-gray-300 transition-colors duration-200 cursor-pointer">
                 Home
-            </a>
+            </button>
+            <button id="nav-about" onclick="showView('about')" class="text-base sm:text-lg font-medium underline underline-offset-4 hover:text-gray-300 transition-colors duration-200 cursor-pointer">
+                About the game
+            </button>
         </nav>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="flex-grow flex items-center justify-center px-6 text-center">
-        <div class="max-w-4xl mx-auto">
+    <!-- Main Content Container -->
+    <main class="flex-grow flex items-center justify-center px-6 py-10">
+        
+        <!-- View 1: Home View -->
+        <section id="view-home" class="max-w-4xl mx-auto text-center flex flex-col items-center justify-center">
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white">
                 AI-Driven NPC Dialogue System with Emotional Memory
             </h1>
-        </div>
+        </section>
+
+        <!-- View 2: About the Game View -->
+        <section id="view-about" class="hidden max-w-4xl mx-auto text-left w-full space-y-8">
+            <div>
+                <!-- Bold and Underlined Main Title -->
+                <h1 class="text-3xl sm:text-4xl font-bold underline underline-offset-8 mb-4">
+                    About the Game
+                </h1>
+                
+                <h2 class="text-xl sm:text-2xl font-semibold text-gray-300 mb-4">
+                    An Open-Ended, Memory-Augmented Social RPG Sandbox
+                </h2>
+
+                <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                    This project introduces an engine-agnostic dialogue framework designed to replace static, predictable dialogue trees with responsive, open-ended NPC interactions. Set in a focused social sandbox, players can freely converse with a cast of 3–5 distinct NPCs whose attitudes, trust, and available tasks evolve dynamically based on how you treat them across play sessions.
+                </p>
+            </div>
+
+            <!-- Key Features Section -->
+            <div class="space-y-6 pt-4 border-t border-gray-900">
+                <h3 class="text-2xl font-bold tracking-wide">
+                    Key Features
+                </h3>
+
+                <ul class="space-y-4 text-gray-300 leading-relaxed list-disc list-inside">
+                    <li>
+                        <strong class="text-white font-semibold">Persistent Emotional Memory:</strong> 
+                        NPCs remember past player actions, conversations, and experiences. Their evolving mood and relationship levels shape how they treat you in future interactions.
+                    </li>
+                    <li>
+                        <strong class="text-white font-semibold">Local, On-Device AI Processing:</strong> 
+                        Powered by quantized local language models running via Ollama, the dialogue system processes conversations entirely on the player's device. This ensures strict privacy, zero recurring API costs, offline availability, and zero reliance on cloud servers.
+                    </li>
+                    <li>
+                        <strong class="text-white font-semibold">World Consistency & Smart Guardrails:</strong> 
+                        To eliminate narrative contradictions, an engine-agnostic middleware filters model outputs. An explicit lore database prevents characters from inventing non-canon facts, while a deterministic rule engine ensures all quest progression, inventory trades, and relationship changes remain fully bound by game logic.
+                    </li>
+                    <li>
+                        <strong class="text-white font-semibold">Responsive, Low-Latency Streaming:</strong> 
+                        Designed for smooth gameplay, custom performance optimizations—including prompt caching, speculative decoding, and predicted-response caching—deliver fluid, real-time response generation without freezing the game UI.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Empty footer to balance flex-box vertical centering -->
-    <footer class="p-6 opacity-0 pointer-events-none">
+    <!-- Footer -->
+    <footer class="p-4 text-center text-xs text-gray-600">
         CS FYP 2026
     </footer>
 
+    <!-- View Switching Logic -->
     <script>
-        // Smooth scroll to top when clicking Home if already on index page
-        document.querySelector('a[href="index.html"]').addEventListener('click', (e) => {
-            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        function showView(viewName) {
+            const homeView = document.getElementById('view-home');
+            const aboutView = document.getElementById('view-about');
+            
+            if (viewName === 'home') {
+                homeView.classList.remove('hidden');
+                aboutView.classList.add('hidden');
+            } else if (viewName === 'about') {
+                homeView.classList.add('hidden');
+                aboutView.classList.remove('hidden');
             }
-        });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
