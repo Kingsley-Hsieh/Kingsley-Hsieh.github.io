@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven NPC Dialogue System with Emotional Memory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col justify-between select-none">
+
+    <!-- Navigation Header -->
+    <header class="w-full p-6 sm:p-8 flex justify-between items-center z-10">
+        <!-- Top Left Header Text -->
+        <div class="text-base sm:text-lg font-semibold tracking-wider text-gray-200">
+            CS FYP 2026
+        </div>
+
+        <!-- Top Right Navigation Link -->
+        <nav>
+            <a href="index.html" class="text-base sm:text-lg font-medium underline underline-offset-4 hover:text-gray-300 transition-colors duration-200 cursor-pointer">
+                Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white">
+                AI-Driven NPC Dialogue System with Emotional Memory
+            </h1>
+        </div>
+    </main>
+
+    <!-- Empty footer to balance flex-box vertical centering -->
+    <footer class="p-6 opacity-0 pointer-events-none">
+        CS FYP 2026
+    </footer>
+
+    <script>
+        // Smooth scroll to top when clicking Home if already on index page
+        document.querySelector('a[href="index.html"]').addEventListener('click', (e) => {
+            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
